@@ -1,1 +1,1 @@
-# mvn-jdk11-builder
+# mvn-jdk11-alpine image

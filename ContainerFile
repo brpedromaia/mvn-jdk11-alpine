@@ -1,0 +1,14 @@
+ARG CONTAINER_USER="nonrootuser"
+
+FROM alpine:3.14 as base
+
+ARG CONTAINER_USER
+
+RUN  apk update \
+    && apk add --no-cache openjdk11 maven \
+    && rm -rf /var/cache/apk/* /tmp/* /sbin/halt /sbin/poweroff /sbin/reboot
+
+RUN adduser -s /bin/bash -u 1000 -D -h /home/${CONTAINER_USER} ${CONTAINER_USER} ${CONTAINER_USER}
+USER ${CONTAINER_USER}
+
+WORKDIR /usr/local/apps/
